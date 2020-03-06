@@ -60,20 +60,20 @@ speakSplit = function(x){
 
 round1 = points1 %>% lapply(FUN=speakSplit)
 round1matrix = matrix(unlist(round1), ncol = length(round1)) %>% t
-round1matrix 
+#round1matrix 
 
 round1.df1 = data.frame(Speaker = R1PFirstSpeaker, Points = round1matrix[,1])
 row.names(round1.df1) = team1
 round1.df2 = data.frame(Speaker = R1PSecondSpeaker, Points = round1matrix[,2])
 row.names(round1.df2) = team1
-
+#round1.df1
 
 #merge(test2,test1,by="row.names")
 
 
 
-
-
+'
+#######
 points1 = points1 %>% lapply(FUN=speakAvg)
 points2 = points2 %>% lapply(FUN=speakAvg)
 newpoints1 = unlist(points1, use.names=TRUE)
@@ -107,8 +107,37 @@ df1
 #df2
 
 
+'
+```
+
+```{r}
+teams1 = c("Team A","Team B", "Team C", "Team D")
+teams2 = c("Team C","Team A", "Team D", "Team B")
+teams3 = c("Team B","Team D", "Team A", "Team C")
+
+speaker1 = c("Alex", "Joey", "Joshy", "Henry")
+speaker2 = c("Joshy", "Alex", "Henry", "Joey")
+speaker3 = c("Joey", "Henry", "Alex", "Joshy")
+
+
+#speaker2 = c("Lily", "Andrew", "Dan", "Steven")
+  
+points1 = c(28,29,30,25)
+points2 = c(25,30,30,26)
+points3 = c(30,24,28,25)
+
+round1 = data.frame(TeamName = teams1, Speaker = speaker1, Points = points1)
+round2 = data.frame(TeamName = teams2, Speaker = speaker2, Points = points2)
+
+rounds1_2=merge(round1,round2,by=c("TeamName","Speaker"), suffixes = c("1","2"))
+rounds1_2
+
+round3 = data.frame(TeamName = teams3, Speaker = speaker3, Points = points3)
+rounds1_3=merge(rounds1_2,round3,by=c("TeamName","Speaker"))
+rounds1_3
 
 ```
+
 
 
 
