@@ -62,11 +62,11 @@ round1 = points1 %>% lapply(FUN=speakSplit)
 round1matrix = matrix(unlist(round1), ncol = length(round1)) %>% t
 #round1matrix 
 
-round1.df1 = data.frame(Speaker = R1PFirstSpeaker, Points = round1matrix[,1])
-row.names(round1.df1) = team1
-round1.df2 = data.frame(Speaker = R1PSecondSpeaker, Points = round1matrix[,2])
-row.names(round1.df2) = team1
-#round1.df1
+round1.df1 = data.frame(Team = team1, Speaker = R1PFirstSpeaker, Points = round1matrix[,1])
+#row.names(round1.df1) = team1
+round1.df2 = data.frame(Team = team1, Speaker = R1PSecondSpeaker, Points = round1matrix[,2])
+#row.names(round1.df2) = team1
+
 
 #merge(test2,test1,by="row.names")
 
@@ -111,6 +111,7 @@ df1
 ```
 
 ```{r}
+#Testing merging and adding columns
 teams1 = c("Team A","Team B", "Team C", "Team D")
 teams2 = c("Team C","Team A", "Team D", "Team B")
 teams3 = c("Team B","Team D", "Team A", "Team C")
@@ -118,9 +119,6 @@ teams3 = c("Team B","Team D", "Team A", "Team C")
 speaker1 = c("Alex", "Joey", "Joshy", "Henry")
 speaker2 = c("Joshy", "Alex", "Henry", "Joey")
 speaker3 = c("Joey", "Henry", "Alex", "Joshy")
-
-
-#speaker2 = c("Lily", "Andrew", "Dan", "Steven")
   
 points1 = c(28,29,30,25)
 points2 = c(25,30,30,26)
@@ -135,9 +133,43 @@ rounds1_2
 round3 = data.frame(TeamName = teams3, Speaker = speaker3, Points = points3)
 rounds1_3=merge(rounds1_2,round3,by=c("TeamName","Speaker"))
 rounds1_3
-
 ```
 
+```{r}
+#Testing merging and adding rows
+teams1 = c("Team A","Team B", "Team C", "Team D")
+teams2 = c("Team C","Team A", "Team D", "Team B")
+
+speaker1 = c("Alex", "Joey", "Joshy", "Henry")
+speaker2 = c("Lily", "Andrew", "Dan", "Steven")
+
+points1 = c(28,29,30,25)
+points2 = c(25,30,30,26)
+
+round1.1 = data.frame(TeamName = teams1, Speaker = speaker1, Round1Points = points1)
+round1.2 = data.frame(TeamName = teams2, Speaker = speaker2, Round1Points = points2)
+
+round1final = rbind(round1.1, round1.2)
+round1final
+
+#Testing mergine and adding columns, more information
+teams3 = c("Team B","Team D", "Team A", "Team C")
+teams4 = c("Team C","Team B", "Team A", "Team D")
+
+speaker1 = c("Joey", "Henry", "Alex", "Joshy")
+speaker2 = c("Lily", "Steven", "Andrew", "Dan")
+
+points1 = c(25,27,28,30)
+points2 = c(27,29.5,29,24)
+
+round2.1 = data.frame(TeamName = teams3, Speaker = speaker1, Round2Points = points1)
+round2.2 = data.frame(TeamName = teams4, Speaker = speaker2, Round2Points = points2)
+
+round2final = rbind(round2.1, round2.2)
+round2final
+
+merge(round1final, round2final, by=c("TeamName","Speaker"))
+```
 
 
 
